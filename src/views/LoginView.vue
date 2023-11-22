@@ -18,7 +18,7 @@
           {{ loading ? 'Loading' : 'Submit' }}
         </button>
         <div class="alert alert-danger alert-dismissible fade mt-5" :class="{ show: wrongCredentials }" role="alert">
-          Oops, parece que el email o la contraseña no son correctos. Por favor, verifica e intentalo de nuevo.
+          Oops, it seems that the email or password is not correct. Please check and try again.
           <button type="button" class="btn-close" aria-label="Close" @click="wrongCredentials = false"></button>
         </div>
       </div>
