@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBar v-if="!$route.meta.hideNavbar"/>
   <router-view></router-view>
 </template>
 
@@ -7,6 +7,7 @@
 import NavBar from "./components/NavBar.vue";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default {
   name: "App",

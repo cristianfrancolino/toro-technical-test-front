@@ -1,22 +1,12 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
-import PizzasView from "./views/PizzasView.vue";
-import LoginView from "./views/LoginView.vue";
-
-const Home = { template: "<div>Home</div>" };
-
-const routes = [
-  { path: "/", component: Home },
-  { path: "/pizzas", component: PizzasView },
-  { path: "/login", component: LoginView },
-];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+import { createPinia } from "pinia";
+import router from "./router";
+import piniaPluginPersistedState from "pinia-plugin-persistedstate"
 
 const app = createApp(App);
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedState);
 app.use(router);
+app.use(pinia);
 app.mount("#app");
