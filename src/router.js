@@ -4,16 +4,23 @@ import LoginView from "./views/LoginView.vue";
 import IngredientsView from "./views/IngredientsView.vue";
 import { useUserStore } from "./store/user";
 
-const Home = { template: "<div>Home</div>" };
-
 const routes = [
-    { path: "/", component: Home },
+    {
+        path: "/",
+        name: "Home",
+        component: PizzasView,
+        meta: {
+            requiresAuth: true,
+            title: "Pizzapp | Pizzas"
+        }
+    },
     {
         path: "/pizzas",
         name: "Pizzas",
         component: PizzasView,
         meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: "Pizzapp | Pizzas"
         }
     },
     {
@@ -21,7 +28,8 @@ const routes = [
         name: "Ingredients",
         component: IngredientsView,
         meta: {
-            requiresAuth: true
+            requiresAuth: true,
+            title: "Pizzapp | Ingredients"
         }
     },
     {
@@ -30,6 +38,7 @@ const routes = [
         component: LoginView,
         meta: {
             hideNavbar: true,
+            title: "Pizzapp | Login"
         }
     },
 ];
@@ -44,6 +53,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth) && !userStore.isAuthenticated) {
         next({ name: 'Login' });
     } else {
+        document.title = to.meta.title;
         next();
     }
 });
